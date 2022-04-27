@@ -12,9 +12,9 @@ export const Posts = () => {
     return (
         <div style={{ margin: "0rem 3rem"}}>
             <h1>Posts</h1>
-            <article className="posts">
+            <article className="Posts">
                 {
-                    posts.map(post => {
+                    getPosts.map(post => {
                         return <section key={post.id} className="posts">
                             <h2>{post.title}</h2>
                             <div>{post.publication_date}</div>

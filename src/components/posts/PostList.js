@@ -17,9 +17,11 @@ export const Posts = () => {
                     getPosts.map(post => {
                         return <section key={post.id} className="posts">
                             <h2>{post.title}</h2>
+                            <div>{post.user}</div>
                             <div>{post.publication_date}</div>
                             <div>{post.image_url}</div>
                             <div>{post.content}</div>
+                            <div>{post.category}</div>
                         </section>
                     })
                 }

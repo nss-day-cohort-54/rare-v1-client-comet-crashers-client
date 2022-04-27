@@ -10,6 +10,10 @@ export const ApplicationViews = () => {
               <Posts/>
           </Route>
 
+          <Route exact path="/posts">
+              <Posts/>
+          </Route>
+
           <Route path="/posts/:postId(\d+)">
               <PostDetail />
           </Route>

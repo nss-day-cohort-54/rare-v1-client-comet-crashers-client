@@ -1,12 +1,13 @@
-import { GetPosts } from "./PostManager";
+import { getPosts } from "./PostManager";
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Posts = () => {
-    const [ getPosts, setPosts ] = useState([])
+    const [ posts, setPosts ] = useState([])
     
 
     useEffect(() => {
-        GetPosts().then(postData => setPosts(postData))
+        getPosts().then(postData => setPosts(postData))
     },[])
 
     return (
@@ -14,12 +15,12 @@ export const Posts = () => {
             <h1>Posts</h1>
             <article className="Posts">
                 {
-                    getPosts.map(post => {
+                    posts.map(post => {
                         return <section key={post.id} className="posts">
-                            <h2>{post.title}</h2>
-                            <div>{post.user}</div>
-                            <div>{post.publication_date}</div>
-                            <div>{post.image_url}</div>
+                            <Link to={`/posts/${post.id}`}><h2>{post.title}</h2></Link>
+                            <div>Posted By: {post.user}</div>
+                            <div>Published on{post.publication_date}</div>
+                            <div>{post?.image_url}</div>
                             <div>{post.content}</div>
                             <div>{post.category}</div>
                         </section>

@@ -1,8 +1,18 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { PostDetail } from "./posts/PostDetail"
+import { Posts } from "./posts/PostList"
 
 export const ApplicationViews = () => {
   return (
-    <h1 >Welcome to Rare Publishing</h1>
+      <>
+          <Route exact path="/">
+              <Posts/>
+          </Route>
+
+          <Route path="/posts/:postId(\d+)">
+              <PostDetail />
+          </Route>
+      </>
   )
-}
+  }

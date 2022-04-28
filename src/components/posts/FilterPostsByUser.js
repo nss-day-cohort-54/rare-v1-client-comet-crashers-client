@@ -2,7 +2,7 @@ import { getPosts } from "./PostManager";
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-export const Posts = () => {
+export const FilterPostsByUser = () => {
     const [ posts, setPosts ] = useState([])
     
 

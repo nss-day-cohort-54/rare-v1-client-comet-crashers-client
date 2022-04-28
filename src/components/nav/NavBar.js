@@ -43,6 +43,17 @@ export const NavBar = ({ token, setToken }) => {
               <Link to="/categories" className="navbar-item">Categories</Link>
           }
         </div>
+        <div className="navbar-start">
+          {
+              <Link to={`/myposts/${localStorage.getItem("rare_user")}`}className="navbar-item">My Posts</Link>
+          }
+        </div>
+
+        <div className="navbar-start">
+          {
+              <Link to="/tags" className="navbar-item">Tags</Link>
+          }
+        </div>
         
         
 

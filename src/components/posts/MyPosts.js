@@ -56,6 +56,11 @@ export const MyPosts = () => {
                     })
                 }
             </article>
+            <article>
+            <button onClick={() => {
+                history.push(`/posts/create`)
+            }}>Create a Post</button>
+            </article>
         </div>
     )
 }

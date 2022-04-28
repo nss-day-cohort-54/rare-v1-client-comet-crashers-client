@@ -67,7 +67,7 @@ export const PostForm = () => {
 
     return (
         <form className="postForm">
-            <h2 className="postForm__title">{editMode ? "Update post" : "Admit post"}</h2>
+            <h2 className="postForm__title">{editMode ? "Update post" : "Create post"}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Title: </label>
@@ -113,7 +113,7 @@ export const PostForm = () => {
                     constructNewPost()
                 }}
                 className="btn btn-primary">
-                {editMode ? "Save Updates" : "Make Reservation"}
+                {editMode ? "Save Updates" : "Create Post"}
             </button>
         </form>
     )

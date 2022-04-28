@@ -1,6 +1,7 @@
 import { getPosts } from "./PostManager";
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { PostForm } from "./PostForm";
 
 export const PostList = () => {
     const [ posts, setPosts ] = useState([])
@@ -26,6 +27,11 @@ export const PostList = () => {
                         </section>
                     })
                 }
+            </article>
+            <article>
+            <button onClick={() => {
+                history.push(`/posts/create`)
+            }}>Create a Post</button>
             </article>
         </div>
     )

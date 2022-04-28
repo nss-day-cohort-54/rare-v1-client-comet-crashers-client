@@ -3,3 +3,9 @@ export const GetPosts = () => {
         .then(res => res.json())
 
 }
+
+export const getPostByCategory = (id) => {
+    return fetch(`http://localhost:8088/posts?category_id=${id}`)
+        .then(res => res.json())
+
+}

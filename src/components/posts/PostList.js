@@ -8,11 +8,11 @@ export const Posts = () => {
     
 
     useEffect(() => {
-        GetPosts().then(postData => setCategories(postData))
+        GetPosts().then(postData => setPosts(postData))
     },[])
 
     useEffect(() => {
-        getCategories().then(postData => setPosts(postData))
+        getCategories().then(postData => setCategories(postData))
     },[])
 
     const filterPostByCategory = (id) => {
@@ -41,14 +41,14 @@ export const Posts = () => {
             <section id="categoryDropdownFilter">
                 <fieldset id="categoryDropdownFieldset">
                     <label id="categorySelectLabel" htmlFor="category"> Filter by category </label>
-                    <select className="minimal" onChange={filterPostByCategory(parseInt(event.target.value))}>
+                    <select className="minimal" onChange={event => {filterPostByCategory(parseInt(event.target.value))}}>
                         <option value="0">Select a category</option>
                         {
                             categories.map(
                                 (category) => {
-                                    return <div>
-                                    <option value={category.id} id="categoryId">{category.id}</option>
-                                    </div>
+                                    return <>
+                                    <option value={category.id} id="categoryId">{category.label}</option>
+                                    </>
                                 }
                             )
                         }

@@ -1,10 +1,11 @@
-import { getUserPosts } from "./PostManager";
+import { deletePost, getUserPosts } from "./PostManager";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const MyPosts = () => {
     const [posts, setPosts] = useState([])
     const {userId} = useParams()
+    const history = useHistory()
 
 
 
@@ -15,13 +16,16 @@ export const MyPosts = () => {
             })
     }
 
-    const deletePost = (id) => {
+    
+
+    const deleteLocalPost = (id) => {
         deletePost(id).then(
-            () => {updatePostList}
+            () => {updatePostList()}
         )
     }
 
     useEffect(
+        
         () => {
             updatePostList()
         },
@@ -39,13 +43,13 @@ export const MyPosts = () => {
 
                             <div>Published on{post.publication_date}</div>
                             <div>{post?.image_url}</div>
-
+                            <div>Posted By: {post.user?.username}</div>
                             <div>{post.category}</div>
                             <div>
-                                <button onClick={() => deletePost(post.id).then(() => history.push("/posts"))} >Delete Post</button>
+                                <button onClick={() => deleteLocalPost(post.id)} >Delete Post</button>
 
                                 <button onClick={() => {
-                                    history.push(`/posts/edit/${post.id}`)
+                                    history.push(`/myposts/edit/${parseInt(post.id)}`)
                                 }}>Edit</button>
                             </div>
                         </section>

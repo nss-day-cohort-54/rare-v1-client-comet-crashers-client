@@ -30,11 +30,7 @@ export const NavBar = ({ token, setToken }) => {
       <div className="navbar-menu" ref={navbar}>
         <div className="navbar-start">
           {
-            token
-              ?
-              <Link to="/posts" className="navbar-item">Posts</Link>
-              :
-              ""
+              <Link to="/posts" className="navbar-item"> All Posts</Link>
           }
         </div>
 
@@ -45,7 +41,11 @@ export const NavBar = ({ token, setToken }) => {
         </div>
         <div className="navbar-start">
           {
-              <Link to={`/myposts/${localStorage.getItem("rare_user")}`}className="navbar-item">My Posts</Link>
+               token
+               ?
+              <Link to={`/myposts/${localStorage.getItem("token")}`}className="navbar-item">My Posts</Link>
+              :
+              ""
           }
         </div>
 
@@ -71,7 +71,6 @@ export const NavBar = ({ token, setToken }) => {
                   <>
                     <Link to="/register" className="button is-link">Register</Link>
                     <Link to="/login" className="button is-outlined">Login</Link>
-                    <Link to="/posts" className="button is-outlined">Posts</Link>
                   </>
               }
             </div>

@@ -2,7 +2,7 @@ import { getPosts } from "./PostManager";
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-export const Posts = () => {
+export const PostList = () => {
     const [ posts, setPosts ] = useState([])
     
 
@@ -15,6 +15,7 @@ export const Posts = () => {
             <h1>Posts</h1>
             <article className="Posts">
                 {
+                    
                     posts.map(post => {
                         return <section key={post.id} className="posts">
                             <Link to={`/posts/${post.id}`}><h2>{post.title}</h2></Link>

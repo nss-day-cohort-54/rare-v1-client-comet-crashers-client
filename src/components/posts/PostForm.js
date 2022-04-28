@@ -34,30 +34,33 @@ export const PostForm = () => {
     }, [])
 
     const constructNewPost = () => {
-        const categoryId = parseInt(post.categoryId)
+        // category_id coming from the API
+        const categoryId = parseInt(post.category_id)
 
         if (categoryId === 0) {
             window.alert("Please select a category")
         } else {
             if (editMode) {
                 // PUT
+                debugger
                 updatePost({
                     id: post.id,
-                    userId: parseInt(localStorage.getItem("rare_user")),
+                    userId: parseInt(localStorage.getItem("token")),
                     categoryId: categoryId,
                     title: post.title,
-                    content: post.content
+                    content: post.content,
+                    publicationDate: post.publication_date
                 })
-                    .then(() => history.push("/posts"))
+                    .then(() => history.push(`/myposts/${localStorage.getItem('token')}`))
             } else {
                 // POST
                 addPost({
-                    userId: parseInt(localStorage.getItem("rare_user")),
+                    userId: parseInt(localStorage.getItem("token")),
                     categoryId: categoryId,
                     title: post.title,
                     content: post.content
                 })
-                    .then(() => history.push("/posts"))
+                    .then(() => history.push(`/myposts/${localStorage.getItem('token')}`))
             }
         }
     }
@@ -88,8 +91,9 @@ export const PostForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="categoryId">category: </label>
-                    <select name="categoryId" className="form-control"
-                        value={post.categoryId}
+                    <select name="category_id" className="form-control"
+                        // data being received from the back end
+                        value={post.category_id}
                         onChange={handleControlledInputChange}>
 
                         <option value="0">Select a category</option>

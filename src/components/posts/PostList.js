@@ -1,15 +1,12 @@
-import { GetPosts, getPostByCategory, getPostByUser } from "./PostManager";
+import { getPosts, getPostByCategory, getPostByUser } from "./PostManager";
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { PostForm } from "./PostForm";
-import { getPostByCategory } from "./PostManager";
-
 import { getCategories } from "../categories/CategoryManager";
 import { getUsers } from "../users/UserManager";
 
 export const PostList = () => {
     const [ posts, setPosts ] = useState([])
-
     const [ categories, setCategories ] = useState([])
     const [ users, setUsers] = useState([])
     

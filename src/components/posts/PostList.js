@@ -21,8 +21,12 @@ export const PostList = () => {
     },[])
 
     const filterPostByCategory = (id) => {
-        getPostByCategory(id)
-            .then((res) => setPosts(res))
+        if (id === 0) {
+            getPosts().then(postData => setPosts(postData))
+        } else {
+            getPostByCategory(id)
+                .then((res) => setPosts(res))
+        }
     }
     
 

@@ -1,11 +1,12 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { PostDetail } from "./posts/PostDetail"
-import { PostList, Posts } from "./posts/PostList"
+import { PostList } from "./posts/PostList"
 import { CategoryList } from "./categories/CategoryList"
 import { PostForm } from "./posts/PostForm"
 import { TagList } from "./tags/TagList"
 import { MyPosts } from "./posts/MyPosts"
+import { UserList } from "./users/UserList"
 
 export const ApplicationViews = () => {
     return (
@@ -32,9 +33,12 @@ export const ApplicationViews = () => {
         <Route exact path="/categories">
                 <CategoryList />
             </Route>
-        <Route exact path="/tags">
-            <TagList />
-        </Route>
+    <Route exact path="/tags">
+        <TagList />
+    </Route>
+    <Route exact path="/users">
+        <UserList />
+    </Route>
     </>
 )
 }

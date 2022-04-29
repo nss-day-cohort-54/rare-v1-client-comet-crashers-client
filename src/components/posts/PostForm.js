@@ -42,7 +42,6 @@ export const PostForm = () => {
         } else {
             if (editMode) {
                 // PUT
-                debugger
                 updatePost({
                     id: post.id,
                     userId: parseInt(localStorage.getItem("token")),

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { PostForm } from "./PostForm";
 import { getPostByCategory } from "./PostManager";
-import React, {useEffect, useState} from "react";
+
 import { getCategories } from "../categories/CategoryManager";
 
 export const PostList = () => {

@@ -1,10 +1,12 @@
-import { GetPosts, getPostByCategory } from "./PostManager";
+import { GetPosts, getPostByCategory, getPostByUser } from "./PostManager";
 import React, {useEffect, useState} from "react";
 import { getCategories } from "../categories/CategoryManager";
+import { getUsers } from "../users/UserManager";
 
 export const Posts = () => {
     const [ getPosts, setPosts ] = useState([])
     const [ categories, setCategories ] = useState([])
+    const [ users, setUsers] = useState([])
     
 
     useEffect(() => {
@@ -15,8 +17,17 @@ export const Posts = () => {
         getCategories().then(postData => setCategories(postData))
     },[])
 
+    useEffect(() => {
+        getUsers().then(postData => setUsers(postData))
+    },[])
+
     const filterPostByCategory = (id) => {
         getPostByCategory(id)
+            .then((res) => setPosts(res))
+    }
+
+    const filterPostByUser = (id) => {
+        getPostByUser(id)
             .then((res) => setPosts(res))
     }
     
@@ -48,6 +59,24 @@ export const Posts = () => {
                                 (category) => {
                                     return <>
                                     <option value={category.id} id="categoryId">{category.label}</option>
+                                    </>
+                                }
+                            )
+                        }
+                    </select>
+                </fieldset>
+            </section>
+
+            <section id="userDropdownFilter">
+                <fieldset id="userDropdownFieldset">
+                    <label id="userSelectLabel" htmlFor="user"> Filter by user </label>
+                    <select className="minimal" onChange={event => {filterPostByUser(parseInt(event.target.value))}}>
+                        <option value="0">Select a user</option>
+                        {
+                            users.map(
+                                (user) => {
+                                    return <>
+                                    <option value={user.id} id="userId">{user.username}</option>
                                     </>
                                 }
                             )

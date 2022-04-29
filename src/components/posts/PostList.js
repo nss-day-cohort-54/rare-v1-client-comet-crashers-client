@@ -33,8 +33,12 @@ export const PostList = () => {
     }
 
     const filterPostByUser = (id) => {
-        getPostByUser(id)
-            .then((res) => setPosts(res))
+        if (id === 0) {
+            getPosts().then(postData => setPosts(postData))
+        } else {
+            getPostByUser(id)
+                .then((res) => setPosts(res))
+        }
     }
     
 

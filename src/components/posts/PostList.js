@@ -1,14 +1,19 @@
-import { GetPosts, getPostByCategory } from "./PostManager";
+import { getPosts } from "./PostManager";
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { PostForm } from "./PostForm";
+import { getPostByCategory } from "./PostManager";
+
 import { getCategories } from "../categories/CategoryManager";
 
-export const Posts = () => {
-    const [ getPosts, setPosts ] = useState([])
+export const PostList = () => {
+    const [ posts, setPosts ] = useState([])
+
     const [ categories, setCategories ] = useState([])
     
 
     useEffect(() => {
-        GetPosts().then(postData => setPosts(postData))
+        getPosts().then(postData => setPosts(postData))
     },[])
 
     useEffect(() => {
@@ -26,17 +31,22 @@ export const Posts = () => {
             <h1>Posts</h1>
             <article className="Posts">
                 {
-                    getPosts.map(post => {
+                    
+                    posts.map(post => {
                         return <section key={post.id} className="posts">
-                            <h2>{post.title}</h2>
-                            <div>{post.user}</div>
-                            <div>{post.publication_date}</div>
-                            <div>{post.image_url}</div>
-                            <div>{post.content}</div>
+                            <Link to={`/posts/${post.id}`}><h2>{post.title}</h2></Link>
+                            <div>Posted By: {post.user}</div>
+                            <div>Published on{post.publication_date}</div>
+                            <div>{post?.image_url}</div>
                             <div>{post.category}</div>
                         </section>
                     })
                 }
+            </article>
+            <article>
+            <button onClick={() => {
+                history.push(`/posts/create`)
+            }}>Create a Post</button>
             </article>
             <section id="categoryDropdownFilter">
                 <fieldset id="categoryDropdownFieldset">

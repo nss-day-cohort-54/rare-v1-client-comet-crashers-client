@@ -18,7 +18,12 @@ export const PostDetail = () => {
             <div className="post__content">{post.content}</div>
             <div className="post__user">Posted by: {post.user}</div>
             <div className="post__category">Category: {post.category}</div>
+
+            <button onClick={() => deletePost(post.id).then(() => history.push("/myposts"))} >Delete Post</button>
+
+            <button onClick={() => {
+                history.push(`/posts/edit/${post.id}`)
+            }}>Edit</button>
         </section>
     )
 }
-

@@ -4,7 +4,7 @@ import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
-import { Posts } from "./posts/PostList"
+import { PostList, Posts } from "./posts/PostList"
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem('token'))
@@ -36,10 +36,10 @@ export const Rare = () => {
       <Register token={token} setToken={setToken} />
     </Route>
 
-    <Route path="/Posts" exact>
+    {/* <Route path="/Posts" exact>
       <NavBar token={token} setToken={setToken} />
-      <Posts token={token} setToken={setToken} />
-    </Route>
+      <PostList token={token} setToken={setToken} />
+    </Route> */}
 
   </>
 }

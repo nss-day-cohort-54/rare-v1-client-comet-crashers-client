@@ -1,15 +1,14 @@
-import { getPosts } from "./PostManager";
+import { getPosts, getPostByCategory, getPostByUser } from "./PostManager";
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { PostForm } from "./PostForm";
-import { getPostByCategory } from "./PostManager";
-
 import { getCategories } from "../categories/CategoryManager";
+import { getUsers } from "../users/UserManager";
 
 export const PostList = () => {
     const [ posts, setPosts ] = useState([])
-
     const [ categories, setCategories ] = useState([])
+    const [ users, setUsers] = useState([])
     
 
     useEffect(() => {
@@ -20,11 +19,24 @@ export const PostList = () => {
         getCategories().then(postData => setCategories(postData))
     },[])
 
+    useEffect(() => {
+        getUsers().then(postData => setUsers(postData))
+    },[])
+
     const filterPostByCategory = (id) => {
         if (id === 0) {
             getPosts().then(postData => setPosts(postData))
         } else {
             getPostByCategory(id)
+                .then((res) => setPosts(res))
+        }
+    }
+
+    const filterPostByUser = (id) => {
+        if (id === 0) {
+            getPosts().then(postData => setPosts(postData))
+        } else {
+            getPostByUser(id)
                 .then((res) => setPosts(res))
         }
     }
@@ -62,6 +74,24 @@ export const PostList = () => {
                                 (category) => {
                                     return <>
                                     <option value={category.id} id="categoryId">{category.label}</option>
+                                    </>
+                                }
+                            )
+                        }
+                    </select>
+                </fieldset>
+            </section>
+
+            <section id="userDropdownFilter">
+                <fieldset id="userDropdownFieldset">
+                    <label id="userSelectLabel" htmlFor="user"> Filter by user </label>
+                    <select className="minimal" onChange={event => {filterPostByUser(parseInt(event.target.value))}}>
+                        <option value="0">Select a user</option>
+                        {
+                            users.map(
+                                (user) => {
+                                    return <>
+                                    <option value={user.id} id="userId">{user.username}</option>
                                     </>
                                 }
                             )
